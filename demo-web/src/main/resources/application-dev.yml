@@ -5,22 +5,6 @@ server:
   servlet:
     context-path: /demo
 spring:
-#  datasource:
-#    platform: h2
-#    schema: classpath:db/schema.sql
-#    data: classpath:db/data.sql
-#    sql-script-encoding: utf-8
-#    url: jdbc:h2:mem:testdb
-#    username: sa
-#    password: sa
-#    initialization-mode: always
-#    continue-on-error: true
-#    hikari:
-#      maximum-pool-size: 8
-#    driver-class-name: com.mysql.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/shardingjdbc?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8&tinyInt1isBit=false
-#    username: root
-#    password: admin123
   jackson:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
