@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <property name="APPDIR" value="user-system"/>
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>.%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg %n
+            </Pattern>
+        </layout>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+    </appender>
+    <appender name="fileInfoLog"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+        </filter>
+        <encoder>
+            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+        </encoder> <!--滚动策略 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> <!--路径 -->
+            <fileNamePattern>logs/${APPDIR}/info.%d.log</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+    <appender name="fileErrorLog"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <encoder>
+            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+        </encoder> <!--滚动策略 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> <!--路径 -->
+            <fileNamePattern>logs/${APPDIR}/error.%d.log</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+    <appender name="serviceInfoLog"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/${APPDIR}/service_info.%d.log</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+    <appender name="serviceErrorLog"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/${APPDIR}/service_error.%d.log</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+    <logger name="com.geostar.zrzy.zhjg.aop.AopLog" level="info" additivity="false">
+        <appender-ref ref="serviceInfoLog"/>
+        <appender-ref ref="serviceErrorLog"/>
+    </logger>
+    <!-- 根据application.yml中设定的环境不同采用不同的日志策略 -->
+    <springProfile name="prod">
+        <root level="info">
+            <appender-ref ref="consoleAppender"/>
+            <appender-ref ref="fileInfoLog"/>
+            <appender-ref ref="fileErrorLog"/>
+            <appender-ref ref="serviceInfoLog"/>
+            <appender-ref ref="serviceErrorLog"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="test">
+        <root level="info">
+            <appender-ref ref="consoleAppender"/>
+            <appender-ref ref="fileInfoLog"/>
+            <appender-ref ref="fileErrorLog"/>
+            <appender-ref ref="serviceInfoLog"/>
+            <appender-ref ref="serviceErrorLog"/>
+        </root>
+    </springProfile>
+
+
+    <springProfile name="dev">
+        <root level="debug">
+            <appender-ref ref="consoleAppender"/>
+        </root>
+    </springProfile>
+</configuration>

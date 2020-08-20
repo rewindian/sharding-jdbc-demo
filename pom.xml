@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.ian</groupId>
+    <artifactId>sharding-jdbc-demo</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0</version>
+    <modules>
+        <module>demo-service</module>
+        <module>demo-web</module>
+        <module>demo-core</module>
+    </modules>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <encoding>UTF-8</encoding>
+        <fastjson.version>1.2.47</fastjson.version>
+        <commons-codec.version>1.10</commons-codec.version>
+        <commons-lang3.version>3.4</commons-lang3.version>
+        <commons-pool2.version>2.6.1</commons-pool2.version>
+        <commons-io.version>2.4</commons-io.version>
+        <commons-net.version>3.5</commons-net.version>
+        <mysql.driver.version>5.1.41</mysql.driver.version>
+        <aspectj.version>1.8.13</aspectj.version>
+        <mybatis-plus.version>2.3.3</mybatis-plus.version>
+        <velocity.version>2.0</velocity.version>
+        <sharding-sphere.version>4.0.1</sharding-sphere.version>
+        <springfox-swagger2.version>2.7.0</springfox-swagger2.version>
+    </properties>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.6.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.driver.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>
