@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
-    <property name="APPDIR" value="user-system"/>
+    <property name="APPDIR" value="demo"/>
     <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
             <Pattern>.%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg %n
@@ -60,10 +60,6 @@
             <fileNamePattern>logs/${APPDIR}/service_error.%d.log</fileNamePattern>
         </rollingPolicy>
     </appender>
-    <logger name="com.geostar.zrzy.zhjg.aop.AopLog" level="info" additivity="false">
-        <appender-ref ref="serviceInfoLog"/>
-        <appender-ref ref="serviceErrorLog"/>
-    </logger>
     <!-- 根据application.yml中设定的环境不同采用不同的日志策略 -->
     <springProfile name="prod">
         <root level="info">
