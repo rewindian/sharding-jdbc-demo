@@ -22,6 +22,4 @@ public class DatePreciseShardingAlgorithm implements PreciseShardingAlgorithm<Da
         }
         throw new IllegalArgumentException("未找到匹配的数据表");
     }
-
-
 }

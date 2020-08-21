@@ -79,7 +79,7 @@ public class OrderController {
     @ApiOperation(value = "保存信息", httpMethod = "POST")
     @PostMapping("/save")
     public ResponseEntity<RestResult> save(@RequestBody Order order) {
-        orderService.insertOrUpdate(order);
+        orderService.insert(order);
         if (null != order.getOrderItemList() && order.getOrderItemList().size() > 0) {
             order.getOrderItemList().forEach(orderItem -> orderItem.setOrderId(order.getId()).setOrderCreateTime(order.getCreateTime()));
             orderItemService.insertBatch(order.getOrderItemList());
