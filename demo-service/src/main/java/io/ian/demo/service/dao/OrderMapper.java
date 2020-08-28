@@ -20,5 +20,4 @@ public interface OrderMapper extends BaseMapper<Order> {
     List<Order> listByRowNum(@Param("suffix") String suffix, @Param("size") Integer size, @Param("rowNum") Integer rowNum
             , @Param("userName") String userName);
 
-    Order findById(@Param("id") Long id, @Param("bgtm") Date bgtm, @Param("edtm") Date edtm);
 }

@@ -8,7 +8,7 @@
             (
             SELECT
                 @rownum := @rownum + 1 AS rowNum,
-                t.*
+                t.id,t.name,t.create_time,t.user_name
             FROM
                 t_order_${suffix} t,
                 ( SELECT @rownum := 0 ) r
@@ -23,9 +23,5 @@
         WHERE
             A.rowNum > #{rowNum}
             LIMIT #{size}
-    </select>
-
-    <select id="findById" resultType="io.ian.demo.service.entity.Order">
-        SELECT * FROM  t_order  WHERE id=#{id} AND create_time between #{bgtm} AND #{edtm}
     </select>
 </mapper>
