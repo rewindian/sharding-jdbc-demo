@@ -4,13 +4,8 @@ server:
     uri-encoding: utf-8
   servlet:
     context-path: /demo
+    ###### shardingJDBC ##########
 spring:
-  jackson:
-    time-zone: GMT+8
-    date-format: yyyy-MM-dd HH:mm:ss
-
-
-###### shardingJDBC ##########
   shardingsphere:
     datasource:
       names: ds

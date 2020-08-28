@@ -1,21 +1,20 @@
 package io.ian.demo.core.shardingjdbc;
 
 import com.google.common.collect.Range;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shardingsphere.api.sharding.standard.RangeShardingAlgorithm;
 import org.apache.shardingsphere.api.sharding.standard.RangeShardingValue;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
+@Slf4j
 public class DateRangeShardingAlgorithm implements RangeShardingAlgorithm<Date> {
-    private Logger logger = LoggerFactory.getLogger(DateRangeShardingAlgorithm.class);
 
     @Override
     public Collection<String> doSharding(Collection<String> availableTargetNames, RangeShardingValue<Date> rangeShardingValue) {
         List<String> list = new ArrayList<>();
-        logger.info("availableTargetNames : " + availableTargetNames);
-        logger.info(rangeShardingValue.toString());
+        log.info("availableTargetNames : " + availableTargetNames);
+        log.info(rangeShardingValue.toString());
         Range<Date> valueRange = rangeShardingValue.getValueRange();
         Date lowerDate = valueRange.lowerEndpoint();
         Date upperDate = valueRange.upperEndpoint();
@@ -27,7 +26,7 @@ public class DateRangeShardingAlgorithm implements RangeShardingAlgorithm<Date> 
                 list.add(tableName);
             }
         }
-        logger.info("match tableNames-----------------------" + list.toString());
+        log.info("match tableNames-----------------------" + list.toString());
         return list;
     }
 
